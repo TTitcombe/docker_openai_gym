@@ -1,0 +1,19 @@
+dist: xenial
+language: python
+python:
+  - 3.7
+
+services:
+  - docker
+
+jobs:
+  include:
+    - stage: "Test Docker Image"
+      install:
+        - docker build --tag=test_image .
+      script:
+        - docker run -it -d --name=test_container test_image  # Create a container and run it in the background
+        - docker ps | grep -q test_container # Check that container is running
+        - docker cp tests/test_image.py test_container:/tmp/test_image.py
+        - docker exec -it test_container /bin/bash
+        - python /tmp/test_image.py
