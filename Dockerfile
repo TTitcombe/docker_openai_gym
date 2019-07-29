@@ -6,13 +6,23 @@ LABEL maintainer="Tom Titcombe <t.j.titcombe@gmail.com>"
 
 WORKDIR /
 
-RUN apt-get update && apt-get -y install python-opengl
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+       apt-utils \
+       build-essential \
+       curl \
+       xvfb \
+       xorg-dev \
+       libsdl2-dev \
+       swig \
+       cmake \
+       python-opengl
 
-COPY requirements.txt /tmp/
 
 # Upgrade pip3
 RUN pip3 install --upgrade pip
 
+COPY requirements.txt /tmp/
 #    Install required packages
 #    This includes gym, numpy, and pytorch (non-gpu)
 #    but also useful packages for data science, like
