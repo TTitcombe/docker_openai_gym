@@ -6,6 +6,5 @@ if [ $# -eq 0 ]
     /bin/bash
 else
   $1
-  /bin/bash
 fi
 
