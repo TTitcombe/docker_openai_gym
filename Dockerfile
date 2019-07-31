@@ -46,6 +46,4 @@ RUN chmod 777 /usr/local/bin/startup_script.sh
 
 # Set the display when we run the container. This allows us to record without the user needing to type anything explicitly
 # This code snippet was taken from https://github.com/duckietown/gym-duckietown/issues/123
-#ENTRYPOINT ["sh", "/startup_script.sh"]
-
 ENTRYPOINT ["/usr/local/bin/startup_script.sh"]
